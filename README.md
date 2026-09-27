@@ -39,7 +39,13 @@ These stages describe the intended progression; they do not imply that every sys
 
 Folders awaiting their first notes contain a `.gitkeep` placeholder so the structure is retained in Git.
 
-## Week 19 Day 1
+## Current progress
+
+- **Week 19 — COMPLETE:** grounded answer governance, citation verification, high-risk claim protection, guarded semantic rescue, and evidence-set relationship / corrective false-premise validation. Final reported full regression: **338 passed**.
+- **Week 20 — NEXT:** Technology & Architecture Refresh Gate, using **KEEP / UPGRADE / REPLACE / IGNORE** decisions.
+- See [CURRENT_STATUS.md](CURRENT_STATUS.md) for final benchmark results, architecture, limitations and retained milestone history.
+
+## Week 19 Day 1 — Historical Capture
 
 The first Second Brain cycle captures and connects the Weeks 17–18 Healthcare Document Intelligence work:
 
@@ -49,7 +55,7 @@ The first Second Brain cycle captures and connects the Weeks 17–18 Healthcare 
 - [Week 19 Day 1 capture](weekly_reviews/week19_day1_capture.md)
 - [Week 19 Day 1 review](weekly_reviews/week19_day1_review.md)
 
-Key themes include evidence sufficiency, document authority, selective human review, measurable governance and testing whether added complexity improves results. The next recorded experiment is to expand the evidence-quality benchmark from 14 to approximately 30–50 controlled cases.
+Key themes include evidence sufficiency, document authority, selective human review, measurable governance and testing whether added complexity improves results. At that milestone, the next experiment was to expand the evidence-quality benchmark from 14 to approximately 30–50 controlled cases. The subsequent Week 19 retrieval benchmark reached 75 cases; see the current status above.
 
 Reported results come from a small synthetic benchmark with prototype controls; they are not production or clinical validation. See the linked project record and review for the supporting context and limitations.
 

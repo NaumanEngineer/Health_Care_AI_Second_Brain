@@ -1,38 +1,40 @@
-\# Health \& Care AI Engineering — Current Status
+﻿# Current Status
 
 
 
-\## Current Stage
+## Training Stage
 
 
 
-\- Roadmap: 18-Month Health \& Care AI Engineer
+- Roadmap: 18-Month Health & Care AI Engineer
 
-\- Current Week: Week 19
+- Current Week: Week 19 — COMPLETE
 
-\- Current Focus: Health \& Care AI Engineering Second Brain
+- Next Week: Week 20 — NEXT (Technology & Architecture Refresh Gate)
 
-\- Study Model: Learn → Build → Test → Govern → Document → Reuse
+- Current Focus: Week 19 grounded answer governance completed; Week 20 technology and architecture review next
 
-
-
-\---
+- Study Model: Learn → Build → Test → Govern → Document → Reuse
 
 
 
-\# Current Flagship Progression
+---
 
 
 
-1\. NHS ICB OPEL Level Predictor
+# Current Flagship Progression
 
-2\. NHS Operational Data Platform
 
-3\. Healthcare Document Intelligence / RAG Assistant
 
-4\. Agentic Operational Assistant
+1. NHS ICB OPEL Level Predictor
 
-5\. NHS Sovereign Operational Intelligence \& Evidence Copilot
+2. NHS Operational Data Platform
+
+3. Healthcare Document Intelligence / RAG Assistant
+
+4. Agentic Operational Assistant
+
+5. NHS Sovereign Operational Intelligence & Evidence Copilot
 
 
 
@@ -40,371 +42,1004 @@ The objective is to evolve these systems into one coherent NHS operational intel
 
 
 
-\---
+---
 
 
 
-\# Most Recently Completed Work
+# Current Flagship
 
 
 
-\## Week 18 — Governed Retrieval \& Human Review
+## Healthcare Document Intelligence / Governed RAG Assistant
 
 
 
-Completed:
+Earlier Week 19 ingestion and retrieval architecture (historical; final governed architecture below):
 
 
 
-\- semantic retrieval evaluation;
+Documents  
 
-\- BM25 keyword retrieval;
+→ extraction  
 
-\- hybrid retrieval;
+→ cleaning  
 
-\- RRF-only retrieval experiment;
+→ chunking  
 
-\- lifecycle-aware evidence filtering;
+→ metadata  
 
-\- query-scope control;
+→ embeddings  
 
-\- abstention handling;
+→ semantic retrieval  
 
-\- human-review routing;
+→ BM25 retrieval  
 
-\- evidence-confidence rules;
+→ hybrid retrieval  
 
-\- structured governance audit records.
+→ query scope gate  
 
+→ evidence sufficiency  
 
+→ targeted retrieval rescue  
 
-Final benchmark:
+→ lifecycle-safe evidence  
 
+→ human review decision  
 
+→ grounded answer / abstention
 
-\- Semantic Top-1: 70%
 
-\- Semantic Top-k: 90%
 
-\- Abstention success: 100%
+---
 
-\- Active-only lifecycle compliance: 100%
 
 
+# Most Recently Completed Work
 
-Human-review distribution:
 
 
+## Week 19 — COMPLETE: Grounded Answer Governance
 
-\- AUTO\_ANSWER: 3
+**Project:** Healthcare Document Intelligence / RAG Assistant  
+**Theme:** Grounded answer governance, citation verification, high-risk claim protection, semantic rescue, and evidence-set reasoning.  
+**Progress:** Week 19 = COMPLETE; Week 20 = NEXT.  
+**Status recorded:** 27 September 2026, using the verified final results supplied by the project owner.
 
-\- REVIEW\_REQUIRED: 8
+### Claim-level evidence sufficiency
 
-\- ABSTAIN: 3
+Added deterministic claim/evidence checks for contradiction and precedence claims, relationships, quantitative and current/external claims, and mandatory procedural claims. False-abstention evaluation is complete.
 
+Final Hybrid Rescue performance on the controlled 75-case synthetic retrieval benchmark:
 
+| Metric | Result |
+| --- | ---: |
+| Top-1 | 82.22% |
+| Top-k | 82.22% |
+| Abstention accuracy | 100% |
+| Active-document compliance | 100% |
 
-\---
+### Citation verification
 
+Claim-level citation verification validates citation resolution, document/chunk identity, lifecycle safety, lexical support and the answer-level outcome. Outcomes include `PASS`, `REVIEW_REQUIRED` and `ABSTAIN`.
 
+### High-risk claim guard
 
-\# Important Engineering Findings
+Deterministic checks detect unsupported numbers, mandatory wording, actors, actions, negation and prohibitions. The high-risk guard experiment achieved **15/15** on the controlled test set.
 
+### Guarded semantic citation rescue
 
+Semantic rescue runs only after citation and lifecycle safety checks. It uses `sentence-transformers/all-MiniLM-L6-v2`, with a semantic rescue threshold of **0.75** and lexical support threshold of **0.60**. Lifecycle-unsafe evidence cannot be rescued semantically.
 
-\## Finding 1
+The production-code citation benchmark recorded **14/15 correct (93.3%)**, **0 false acceptances** and **1 false rejection**. This describes testing of the project implementation on synthetic cases, not production NHS validation or deployment. The remaining difficult case, **CIT010**, required evidence-set reasoning rather than ordinary single-citation verification.
 
+### Evidence-set relationship reasoning
 
+Created in the RAG project: `src/governance/evidence_set_relationship.py`.
 
-Semantic similarity does not equal sufficient evidence.
+Supported relationships: `CONFLICT`, `COMPLEMENTS`, `REPLACES`, `TAKES_PRECEDENCE`.
 
+Possible outcomes: `RELATIONSHIP_SUPPORTED`, `RELATIONSHIP_NOT_ESTABLISHED`, `REVIEW_REQUIRED`.
 
+Draft, Superseded, Archived or unconfirmed evidence cannot automatically establish an authoritative relationship.
 
-An out-of-scope question may still retrieve a semantically similar document.
+### Corrective false-premise handling
 
+Created in the RAG project: `src/governance/corrective_false_premise.py`.
 
+The system can validate whether a user's assumed document relationship is established before reasoning from it. Example safe correction:
 
-\---
+> The available evidence does not establish that DOC-003 and DOC-011 conflict.
 
+Absence of documented conflict does **not** prove that no conflict exists. The system states only that the supplied evidence does not establish the alleged relationship. The new relationship and corrective-validation tests do not, by themselves, establish a new end-to-end citation benchmark score.
 
+### Final testing status
 
-\## Finding 2
+| Validation | Result |
+| --- | ---: |
+| Evidence-set relationship tests | 10 passed |
+| Corrective false-premise tests | 8 passed |
+| Combined Day 6 relationship tests | 18 passed |
+| Full project regression | **338 passed** |
 
+### Week 19 engineering principle
 
+> Verify the premise before reasoning from it.
 
-Document relevance does not equal document authority.
+### Current governed architecture
 
+```text
+Question
+→ Scope Gate
+→ Retrieval
+→ Evidence Sufficiency
+→ Pre-generation Governance
+→ Answer Generation
+→ Citation Verification
+→ High-Risk Claim Guard
+→ Guarded Semantic Rescue
+→ Evidence-Set Relationship Validation
+→ Corrective False-Premise Validation
+→ Post-generation Governance
+→ AUTO_ANSWER / REVIEW_REQUIRED / ABSTAIN
+```
 
+### Week 20 — NEXT: Technology & Architecture Refresh Gate
 
-Lifecycle state such as Active, Draft, Superseded, or Archived must be considered separately from retrieval relevance.
+Review frontier models, agents, RAG, retrieval, Microsoft Fabric / Azure, healthcare regulation, NHS digital strategy and deployment practices. Explore cross-pollination from aviation, banking, cybersecurity, logistics, manufacturing and other high-reliability industries.
 
+Use four decisions: **KEEP / UPGRADE / REPLACE / IGNORE**.
 
+Determine which architecture components remain valid, which should be upgraded, what is obsolete, which new capabilities genuinely improve the NHS project, and which technology is hype and should be ignored.
 
-\---
+The benchmark results remain controlled prototype evidence. They do not demonstrate production readiness or NHS subject-matter-expert validation.
 
+---
 
+## Week 19 — Governed Evidence Retrieval & Targeted Rescue (Earlier Milestone)
 
-\## Finding 3
 
 
+The Week 18 retrieval benchmark was expanded from 14 to 38 controlled evaluation cases.
 
-More retrieval complexity does not automatically improve performance.
 
 
+The expanded benchmark includes:
 
-Hybrid retrieval did not outperform the semantic baseline in the current benchmark.
 
 
+- clear single-document questions;
 
-\---
+- paraphrased operational questions;
 
+- ambiguous operational questions;
 
+- cross-document questions;
 
-\## Finding 4
+- lifecycle conflicts;
 
+- questions where the corpus contains no evidence;
 
+- clinical out-of-scope questions;
 
-Human review should be triggered by uncertainty and evidence quality rather than simply by the number of documents retrieved.
+- current external-information questions;
 
+- adversarial prompts.
 
 
-\---
 
+---
 
 
-\## Finding 5
 
+# Scope Control
 
 
-AI governance controls should be measurable and testable.
 
+A deterministic query-scope layer separates:
 
 
-Examples include:
 
+- questions appropriate for the operational assistant;
 
+- clinical/prescribing questions;
 
-\- abstention rate;
+- current external-information questions.
 
-\- lifecycle compliance;
 
-\- evidence confidence;
 
-\- review routing;
+Important engineering finding:
 
-\- audit records.
 
 
+A question being in scope does not mean the system has sufficient evidence to answer it.
 
-\---
 
 
+Examples:
 
-\# Current Limitations
 
 
+Q029 — cybersecurity incident procedure  
 
-The current Healthcare Document Intelligence benchmark:
+Q030 — electronic patient record system failure  
 
+Q031 — medical oxygen supply failure
 
 
-\- uses synthetic documents;
 
-\- contains only 14 evaluation cases;
+These questions are operationally valid but the current corpus does not contain specific supporting evidence.
 
-\- uses prototype confidence thresholds;
 
-\- has not been validated by NHS operational experts;
 
-\- has not been tested against large real-world document collections;
+They therefore require evidence-based abstention rather than scope rejection.
 
-\- is not a production clinical system.
 
 
+---
 
-The 100% abstention result therefore applies only to the current controlled evaluation set.
 
 
+# Evidence Sufficiency
 
-\---
 
 
+A deterministic concept-first evidence-sufficiency layer was added.
 
-\# Current Skills Being Developed
 
 
+The system now distinguishes:
 
-\## Technical
 
 
+1. OUT_OF_SCOPE
 
-\- Python
+2. IN_SCOPE + SUFFICIENT EVIDENCE
 
-\- SQL
+3. IN_SCOPE + INSUFFICIENT EVIDENCE
 
-\- PostgreSQL
 
-\- RAG
 
-\- embeddings
+Similarity score alone was rejected as the abstention rule.
 
-\- semantic retrieval
 
-\- BM25
 
-\- hybrid retrieval
+Observed score overlap demonstrated why.
 
-\- reranking
 
-\- evaluation
 
-\- testing
+Unsupported example:
 
-\- governance controls
 
 
+- Q031 top semantic similarity ≈ 0.567
 
-\## Healthcare / NHS
 
 
+Valid answerable examples:
 
-\- operational escalation
 
-\- winter pressure
 
-\- workforce pressure
+- Q037 ≈ 0.500
 
-\- bed capacity
+- Q026 ≈ 0.530
 
-\- operational governance
+- Q036 ≈ 0.548
 
-\- evidence authority
 
-\- human accountability
 
+Therefore a simple similarity threshold would incorrectly reject valid questions.
 
 
-\---
 
+---
 
 
-\# Current Portfolio Evidence
 
+# Evidence-Sufficiency Engineering Principle
 
 
-I can currently demonstrate:
 
+Query eligibility and evidence sufficiency are different safety problems.
 
 
-\- building a healthcare document ingestion pipeline;
 
-\- metadata and document lifecycle governance;
+A question may be appropriate for the NHS operational scope while still requiring abstention because the available corpus does not substantiate the requested subject.
 
-\- chunking and embeddings;
 
-\- semantic and keyword retrieval;
 
-\- controlled hybrid retrieval experiments;
+The system should not answer merely because it retrieves vaguely related operational documents.
 
-\- evaluation benchmark design;
 
-\- failure analysis;
 
-\- abstention controls;
+---
 
-\- human-review routing;
 
-\- structured auditability.
 
+# Multi-Document Retrieval Finding
 
 
-\---
 
+## Q027
 
 
-\# Current Interview Story
 
+Question:
 
 
-I tested multiple retrieval approaches and discovered that better retrieval alone did not solve unsafe evidence selection.
 
+“How should severe weather pressure and ambulance handover disruption be considered together?”
 
 
-Out-of-scope clinical questions could still retrieve operational documents with reasonable semantic similarity.
 
+Initial semantic/hybrid retrieval found strong ambulance-handover evidence but failed to retain severe-weather evidence.
 
 
-I introduced a deterministic scope-control layer, improving abstention success from 0% to 100% on the controlled benchmark while maintaining retrieval performance.
 
+The evidence-sufficiency layer correctly detected:
 
 
-I then added AUTO\_ANSWER, REVIEW\_REQUIRED, and ABSTAIN governance decisions with structured audit records.
 
+- ambulance_handover: present
 
+- severe_weather: missing
 
-\---
 
 
+Result:
 
-\# Current Questions
 
 
+INSUFFICIENT EVIDENCE
 
-1\. How should evidence sufficiency be evaluated on a larger benchmark?
 
-2\. How should human-review feedback be captured and reused?
 
-3\. How should conflicting evidence across documents be detected?
+This exposed a retrieval problem rather than a scope or evidence-checker problem.
 
-4\. How should the system evolve toward an agentic operational assistant without giving it excessive autonomy?
 
-5\. How should evaluation evolve when real NHS-style documents are introduced?
 
+---
 
 
-\---
 
+# Failed Experiment — Global RRF Reranking
 
 
-\# Next Technical Direction
 
+A hybrid-specific RRF-first reranker was tested.
 
 
-Continue improving the Healthcare Document Intelligence system before moving into full agentic workflows.
 
+It successfully recovered severe-weather evidence for Q027.
 
 
-Priority areas:
 
+However, it caused wider retrieval regressions.
 
 
-1\. stronger evidence evaluation;
 
-2\. citation verification;
+Hybrid before global RRF reranking:
 
-3\. human-review workflow;
 
-4\. larger benchmark;
 
-5\. richer operational document corpus;
+- Top-1: 75.0%
 
-6\. preparation for later agentic tool use.
+- Top-k: 87.5%
 
 
 
-\---
+Hybrid after global RRF reranking:
 
 
 
-\# Second Brain Workflow
+- Top-1: 70.8%
 
+- Top-k: 75.0%
 
 
-Every week:
 
+Engineering conclusion:
 
 
-\## Capture
+
+A global ranking change solved one difficult case but degraded overall retrieval quality.
+
+
+
+The experiment was therefore rejected as the default strategy.
+
+
+
+---
+
+
+
+# Successful Experiment — Targeted Evidence Rescue
+
+
+
+A targeted Hybrid Rescue strategy was developed.
+
+
+
+Flow:
+
+
+
+Question  
+
+→ Scope Gate  
+
+→ Original Hybrid Retrieval  
+
+→ Evidence Sufficiency
+
+
+
+If evidence is sufficient:
+
+
+
+→ keep original Hybrid result unchanged
+
+
+
+If evidence is insufficient:
+
+
+
+→ invoke RRF/BM25 rescue  
+
+→ add missing evidence conservatively  
+
+→ re-check evidence sufficiency
+
+
+
+If evidence remains insufficient:
+
+
+
+→ ABSTAIN
+
+
+
+---
+
+
+
+# Q027 Rescue Result
+
+
+
+Initial evidence:
+
+
+
+- Decision: INSUFFICIENT
+
+- Missing concept: severe_weather
+
+
+
+Rescue attempted:
+
+
+
+- Yes
+
+
+
+Rescued document:
+
+
+
+- DOC-009 — Severe Weather Operational Plan
+
+
+
+Final evidence:
+
+
+
+- Decision: SUFFICIENT
+
+
+
+Final evidence documents:
+
+
+
+- DOC-008
+
+- DOC-008
+
+- DOC-009
+
+
+
+This preserved the strong normal Hybrid path while recovering missing evidence only when required.
+
+
+
+---
+
+
+
+# Final 38-Case Governed Benchmark
+
+
+
+| Method | Top-1 | Top-k | Abstention | Active-only |
+
+|---|---:|---:|---:|---:|
+
+| Semantic | 75.0% | 87.5% | 100% | 100% |
+
+| Keyword | 41.7% | 62.5% | 100% | 100% |
+
+| Hybrid | 75.0% | 87.5% | 100% | 100% |
+
+| RRF-only | 70.8% | 75.0% | 100% | 100% |
+
+| Hybrid Rescue | 79.2% | 91.7% | 100% | 100% |
+
+
+
+At this earlier milestone, Hybrid Rescue was the strongest experimental retrieval method on the controlled 38-case benchmark.
+
+
+
+It has not yet been promoted to the default retrieval strategy.
+
+
+
+---
+
+
+
+# Validation Status
+
+
+
+Earlier retrieval milestone validation (retained history):
+
+
+
+- 40 focused evidence-sufficiency tests passed
+
+- 250 full tests passed after evidence integration
+
+- 11 focused rescue tests passed
+
+- 270 full tests passed before benchmark integration
+
+- 272 tests passed after Hybrid Rescue benchmark integration
+
+
+
+Evaluation set at that earlier milestone:
+
+
+
+- 38 controlled cases
+
+
+
+---
+
+
+
+# Important Engineering Findings
+
+
+
+## Finding 1 — Scope and evidence are separate
+
+
+
+Scope control answers:
+
+
+
+“Is this type of question appropriate for the system?”
+
+
+
+Evidence sufficiency answers:
+
+
+
+“Do the retrieved documents actually support the requested subject?”
+
+
+
+These must remain separate controls.
+
+
+
+---
+
+
+
+## Finding 2 — Similarity does not equal evidence
+
+
+
+High semantic similarity does not prove that the retrieved document contains sufficient evidence to answer a question.
+
+
+
+---
+
+
+
+## Finding 3 — Retrieval quality and answer safety are separate
+
+
+
+A retrieval system can return relevant-looking documents while still lacking sufficient evidence for a safe answer.
+
+
+
+---
+
+
+
+## Finding 4 — Global optimisation can create regressions
+
+
+
+Changing the ranking strategy globally fixed Q027 but damaged several previously strong cases.
+
+
+
+Local improvements must therefore be tested against the entire benchmark.
+
+
+
+---
+
+
+
+## Finding 5 — Conditional rescue can outperform replacement
+
+
+
+Targeted evidence rescue preserved the stronger baseline retrieval behavior while recovering missing evidence only when necessary.
+
+
+
+---
+
+
+
+## Finding 6 — Failed experiments are useful evidence
+
+
+
+The failed global RRF experiment explained why the final conditional-rescue architecture was needed.
+
+
+
+Engineering failures should be preserved as design evidence rather than hidden.
+
+
+
+---
+
+
+
+# NHS Relevance
+
+
+
+For an NHS operational assistant, finding a vaguely related document is not sufficient.
+
+
+
+A governed system should be able to say:
+
+
+
+- this question is outside my permitted scope;
+
+- this question is appropriate, but I do not have adequate evidence;
+
+- I have sufficient active evidence to continue;
+
+- human review is required.
+
+
+
+This supports safer operational decision support and clearer accountability.
+
+
+
+---
+
+
+
+# Current Limitations
+
+
+
+The current system:
+
+
+
+- uses synthetic operational documents;
+
+- has 75 controlled synthetic retrieval cases and a 15-case citation benchmark;
+
+- uses deterministic concept vocabularies;
+
+- has not been validated by NHS subject-matter experts;
+
+- has not been evaluated against a large real NHS document collection;
+
+- does not prove factual entailment merely from concept coverage;
+
+- has not been production deployed;
+
+- does not yet include production monitoring;
+
+- does not yet include live NHS integrations.
+
+
+
+Hybrid Rescue remains experimental.
+
+
+
+The benchmark results must not be presented as production NHS performance.
+
+
+
+---
+
+
+
+# Current Skills Being Developed
+
+
+
+## Technical
+
+
+
+- Python
+
+- SQL
+
+- PostgreSQL
+
+- RAG
+
+- embeddings
+
+- semantic retrieval
+
+- BM25
+
+- Reciprocal Rank Fusion
+
+- hybrid retrieval
+
+- deterministic reranking
+
+- evidence sufficiency
+
+- retrieval evaluation
+
+- abstention design
+
+- retrieval rescue
+
+- automated testing
+
+- auditability
+
+- AI governance
+
+
+
+## Healthcare / NHS
+
+
+
+- operational escalation
+
+- winter pressure
+
+- workforce pressure
+
+- bed capacity
+
+- ambulance handover
+
+- severe weather disruption
+
+- operational governance
+
+- document lifecycle authority
+
+- evidence quality
+
+- human accountability
+
+
+
+---
+
+
+
+# Current Portfolio Evidence
+
+
+
+I can demonstrate:
+
+
+
+- healthcare document ingestion;
+
+- metadata and lifecycle governance;
+
+- chunking and embedding pipelines;
+
+- semantic and keyword retrieval;
+
+- hybrid retrieval;
+
+- RRF experiments;
+
+- controlled benchmark design;
+
+- retrieval failure analysis;
+
+- deterministic scope control;
+
+- evidence-sufficiency controls;
+
+- abstention;
+
+- targeted retrieval rescue;
+
+- human-review routing;
+
+- structured auditability;
+
+- regression testing;
+
+- evidence-based engineering decisions.
+
+
+
+---
+
+
+
+# Current Interview Story
+
+
+
+Situation:
+
+
+
+A multi-document NHS operational question required both severe-weather and ambulance-handover evidence.
+
+
+
+Task:
+
+
+
+Improve retrieval coverage without weakening safety or degrading the wider benchmark.
+
+
+
+Action:
+
+
+
+I compared semantic retrieval, BM25, Hybrid and RRF behavior.
+
+
+
+I found that semantic retrieval missed severe-weather evidence while BM25 found it.
+
+
+
+I rejected a global RRF-first ranking change after testing showed that it fixed the individual case but caused wider benchmark regressions.
+
+
+
+I instead developed an evidence-aware conditional rescue mechanism that invokes alternate retrieval only when the normal evidence set is insufficient.
+
+
+
+Result:
+
+
+
+On the controlled 38-case synthetic benchmark, Hybrid Rescue achieved:
+
+
+
+- Top-1: 79.2%
+
+- Top-k: 91.7%
+
+- Abstention: 100%
+
+- Active-only lifecycle compliance: 100%
+
+
+
+These are prototype benchmark results and not production NHS performance.
+
+
+
+---
+
+
+
+# Current Questions
+
+
+
+1. Does Hybrid Rescue continue to outperform on a substantially larger benchmark?
+
+2. How should evidence sufficiency be tested against harder paraphrases?
+
+3. How should conflicting evidence across documents be detected?
+
+4. How should NHS SME review be incorporated into evaluation?
+
+5. How should citation verification be strengthened?
+
+6. How should human-review feedback be captured and reused?
+
+7. How should this governed retrieval architecture evolve into an agentic operational assistant without excessive autonomy?
+
+
+
+---
+
+
+
+# Immediate Next Technical Priority
+
+
+
+Week 20 — Technology & Architecture Refresh Gate is NEXT. Review the architecture using KEEP / UPGRADE / REPLACE / IGNORE decisions.
+
+Earlier priority (completed): expand beyond 38 cases. The retrieval benchmark now contains 75 cases; promotion of Hybrid Rescue remains a separate decision.
+
+
+
+Do not add unrelated technologies simply to increase project complexity.
+
+
+
+The next improvements should be driven by measured failure modes.
+
+
+
+---
+
+
+
+# Second Brain Workflow
+
+
+
+Continue:
+
+
+
+## Capture
 
 
 
@@ -412,27 +1047,39 @@ Record:
 
 
 
-\- what was learned;
+- what was learned;
 
-\- what was built;
+- what was built;
 
-\- what failed;
+- what failed;
 
-\- benchmark evidence;
+- benchmark evidence;
 
-\- decisions made.
-
-
-
-\## Connect
+- important implementation decisions.
 
 
 
-Identify where lessons apply elsewhere.
+## Connect
 
 
 
-\## Critique
+Connect lessons across:
+
+
+
+- RAG;
+
+- NHS governance;
+
+- operational intelligence;
+
+- future agents;
+
+- Sovereign NHS Operational Copilot.
+
+
+
+## Critique
 
 
 
@@ -440,91 +1087,157 @@ Identify:
 
 
 
-\- weak assumptions;
+- weak assumptions;
 
-\- missing validation;
+- missing validation;
 
-\- risks;
+- safety risks;
 
-\- unresolved questions.
+- benchmark weaknesses;
 
-
-
-\## Compress
+- unresolved engineering questions.
 
 
 
-Convert the week's work into:
+## Compress
 
 
 
-\- engineering principles;
-
-\- interview evidence;
-
-\- architecture decisions;
-
-\- future experiments.
+Convert the work into:
 
 
 
-\---
+- engineering principles;
+
+- interview evidence;
+
+- architecture decisions;
+
+- reusable patterns;
+
+- future experiments.
 
 
 
-\## Week 19 Day 1 Completed
+---
 
 
 
-Completed the first Second Brain cycle:
+# Current Restart Point
+
+Week 19 = COMPLETE. Week 20 = NEXT: Technology & Architecture Refresh Gate.
+
+Final full project regression: **338 passed**. Core principle: **Verify the premise before reasoning from it.**
+
+The final Week 19 completion record above supersedes the earlier milestone snapshots retained below.
+
+## Earlier Restart Snapshot — After Claim-Level Evidence Upgrade
 
 
 
-\- Capture
-
-\- Connect
-
-\- Critique
-
-\- Compress
+Week 19 governed retrieval work is complete through the Hybrid Rescue experiment.
 
 
 
-Key outputs:
+Latest status:
+
+- 75-case benchmark operational
+- scope gate operational
+- topic-level and claim-level evidence sufficiency operational
+- targeted evidence rescue operational
+- lifecycle protection operational
+- 276 tests passing
+- Hybrid Rescue currently strongest experimental retrieval method on the controlled benchmark
+- Hybrid Rescue Top-1: 80.0%
+- Hybrid Rescue Top-k: 80.0%
+- Abstention: 100%
+- Active-only: 100%
+
+Next:
+
+Test whether claim-level evidence checks create false abstentions on harder answerable questions before expanding the rule set or promoting Hybrid Rescue further.
 
 
 
-\- healthcare project knowledge record;
+## Week 19 — Claim-Level Evidence Upgrade
 
-\- cross-project connection map;
+The 75-case benchmark exposed four cases where topic-level evidence was not enough:
 
-\- agentic design connection note;
+- Q063 — fabricated workforce conflict
+- Q064 — fabricated policy conflict
+- Q065 — supported ambulance-handover topic plus unsupported current financial penalty
+- Q067 — supported infection-surge topic plus unsupported exact numerical trigger
 
-\- Week 17–18 capture;
+The evidence layer was upgraded from topic-level sufficiency to claim-level completeness.
 
-\- Week 19 Day 1 compressed review.
+New deterministic checks cover:
+
+- contradiction / precedence claims
+- relationship claims
+- quantitative claims
+- current / external requirements
+- mandatory procedural conditions
+
+Validation:
+
+- 44 focused evidence tests passed
+- 276 full project tests passed
+
+75-case Hybrid Rescue result at the claim-level upgrade milestone:
+
+- Top-1: 80.0%
+- Top-k: 80.0%
+- Abstention: 100%
+- Active-only: 100%
+
+Key learning:
+
+Evidence sufficiency must be evaluated at the level of requested claims and relationships, not only detected topics.
+
+Next priority:
+
+Test whether claim-level checks cause false abstentions on harder answerable questions before expanding the rule set further.
 
 
+## Week 19 — Day 3: Citation Verification & Grounded Answer Governance
 
-Primary next experiment:
+Day 3 added a post-generation safety layer to the Healthcare Document Intelligence RAG system.
 
+Completed:
+- deterministic citation verification
+- claim outcomes:
+  - SUPPORTED
+  - PARTIALLY_SUPPORTED
+  - UNSUPPORTED
+  - CITATION_MISMATCH
+- correct document and chunk verification
+- lifecycle-safe citation checks
+- answer-level PASS / REVIEW_REQUIRED / ABSTAIN
+- post-generation governance integration
+- monotonic safety rule: later stages can preserve or downgrade safety decisions, but cannot upgrade an unsafe decision
+- 16 citation-verification tests passed
+- 28 combined citation/governance tests passed
+- 310 full project tests passed
+- local project and GitHub main synchronized
 
+Governed RAG architecture at the Day 3 milestone:
 
-Expand the evidence-quality benchmark from 14 cases to approximately 30–50 controlled cases.
+Question
+→ Scope Gate
+→ Retrieval
+→ Evidence Sufficiency
+→ Pre-generation Governance
+→ Answer Generation
+→ Citation Verification
+→ Post-generation Governance
+→ AUTO_ANSWER / REVIEW_REQUIRED / ABSTAIN
 
+Key learning:
 
+Good retrieval does not guarantee a grounded final answer.
 
+Every material answer claim should be traceable to the correct supporting evidence and lifecycle-safe citation.
 
+Next priority:
 
-
-
-
-
-
-
-
-
-
-
-
-
+Evaluate citation verification on realistic generated answers and measure false-positive and false-negative grounding decisions before increasing verifier complexity.

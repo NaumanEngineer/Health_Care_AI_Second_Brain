@@ -8,11 +8,15 @@
 
 - Roadmap: 18-Month Health & Care AI Engineer
 
-- Current Week: Week 19 — COMPLETE
+- Current Week: Week 20 — Technology & Architecture Refresh Gate
 
-- Next Week: Week 20 — NEXT (Technology & Architecture Refresh Gate)
+- Week 19: COMPLETE
 
-- Current Focus: Week 19 grounded answer governance completed; Week 20 technology and architecture review next
+- Week 20 Day 1: COMPLETE
+
+- Next: Week 20 Day 2 — RAG, retrieval and evidence architecture review
+
+- Current Focus: Day 1 frontier model and agent architecture review complete; Day 2 retrieval and evidence review next
 
 - Study Model: Learn → Build → Test → Govern → Document → Reuse
 
@@ -98,11 +102,95 @@ Documents
 
 
 
+## Week 20 Day 1 — COMPLETE: Frontier Models and Agent Architecture Review
+
+**Week 20 theme:** Technology & Architecture Refresh Gate.  
+**Progress:** Week 19 = COMPLETE; Week 20 Day 1 = COMPLETE; Week 20 Day 2 = NEXT.  
+**Baseline:** The Week 19 governed architecture remains the tested **Architecture v1** baseline. Day 1 records a proposed direction, not an implemented architecture replacement.
+
+### Latest verified RAG repository state
+
+The following state is recorded from the project owner's verified update on 28 September 2026. It describes the **Healthcare Document Intelligence / RAG repository**, not this Second Brain repository:
+
+- Git branch: `main`.
+- Local = `origin/main`.
+- Working tree clean.
+- Latest commit: `f37b91f` — Add Week 20 Day 1 frontier model and agent architecture review.
+- Week 19 completion commit: `54ebeca` — Complete Week 19 evidence-set reasoning and false-premise governance.
+- Latest verified full regression baseline: **338 tests passed**.
+- The Week 20 Day 1 commit was documentation-only, so tests were not rerun.
+
+### Core principle
+
+> Simplify the intelligence layer, preserve the assurance layer.
+
+Simplify unnecessary specialist agents, duplicated orchestration, excessive prompt scaffolding and custom runtime infrastructure where managed services can safely replace it.
+
+Preserve evidence sufficiency, lifecycle/version checks, citation verification, high-risk claim checks, evidence-set reasoning, corrective false-premise handling, `AUTO_ANSWER / REVIEW_REQUIRED / ABSTAIN`, human review and auditability.
+
+### Architecture pivot
+
+Move away from many specialist agents, heavy custom orchestration and large prompt scaffolding.
+
+Move toward one strong governed orchestrator, bounded specialist tools, managed runtime where appropriate, controlled retrieval, deterministic assurance and human oversight.
+
+### Agent design principle
+
+| Responsibility | Appropriate role |
+| --- | --- |
+| Agents | Flexible reasoning, planning, coordination, synthesis and independent parallel analytical workstreams |
+| Tools | Retrieval, SQL, calculations, policy lookup, lifecycle validation, evidence validation, citation verification and deterministic governance |
+| Governance | Final safety decision, review routing, abstention and auditability |
+
+### Provisional KEEP / UPGRADE / REPLACE / IGNORE decisions
+
+| Decision | Components / ideas |
+| --- | --- |
+| KEEP | Hybrid retrieval / RAG for now; citation verification; lifecycle controls; evidence sufficiency; high-risk claim guard; evidence-set reasoning; corrective false-premise handling; human review; AUTO / REVIEW / ABSTAIN |
+| UPGRADE | Strong primary orchestrator; bounded specialist tools; long-context reasoning where useful; risk- and complexity-aware model routing; future controlled computer-use workflows |
+| REDUCE / REPLACE | Excessive multi-agent chains; unnecessary custom orchestration; repetitive prompt scaffolding; custom runtime infrastructure where managed services provide equivalent capability |
+| IGNORE | “Long context means RAG is dead”; “every capability needs its own agent”; adopting new frameworks without measurable NHS operational value |
+
+These are provisional review decisions. Architecture v1 remains the tested baseline until changes pass evaluation.
+
+### Economic principle
+
+> Spend money on useful intelligence and NHS-specific assurance, not unnecessary AI plumbing.
+
+### Emerging USP and NHS manager value
+
+A model-flexible, evidence-governed NHS operational intelligence copilot that reduces unnecessary AI complexity while preserving auditability, policy safety and human accountability.
+
+The system should reduce time spent gathering, reconciling and interpreting operational information while keeping the manager accountable for the final decision.
+
+### Future business metrics to measure
+
+- Management briefing preparation time saved.
+- Analyst minutes saved.
+- Manual data sources avoided.
+- Policy-search time reduced.
+- Citation accuracy.
+- Unsafe answers blocked.
+- Appropriate human escalations.
+- Cost per governed query.
+
+These are future measurement targets, not benefits already demonstrated by the prototype.
+
+### Model replaceability goal
+
+The assurance layer should remain stable enough that a future frontier model can replace the current intelligence model without rebuilding the whole governance system, provided the replacement passes evaluation.
+
+### Week 20 Day 2 — NEXT
+
+**RAG, retrieval and evidence architecture review.** Examine hybrid retrieval, reranking, long-context alternatives, graph / relationship retrieval, contextual retrieval, evidence architecture and which current retrieval components still earn their place.
+
+---
+
 ## Week 19 — COMPLETE: Grounded Answer Governance
 
 **Project:** Healthcare Document Intelligence / RAG Assistant  
 **Theme:** Grounded answer governance, citation verification, high-risk claim protection, semantic rescue, and evidence-set reasoning.  
-**Progress:** Week 19 = COMPLETE; Week 20 = NEXT.  
+**Progress at Week 19 completion:** Week 19 = COMPLETE; Week 20 was next. See the Week 20 Day 1 record above for current progress.  
 **Status recorded:** 27 September 2026, using the verified final results supplied by the project owner.
 
 ### Claim-level evidence sufficiency
@@ -183,7 +271,7 @@ Question
 → AUTO_ANSWER / REVIEW_REQUIRED / ABSTAIN
 ```
 
-### Week 20 — NEXT: Technology & Architecture Refresh Gate
+### Week 20 Plan Recorded at Week 19 Completion — Technology & Architecture Refresh Gate
 
 Review frontier models, agents, RAG, retrieval, Microsoft Fabric / Azure, healthcare regulation, NHS digital strategy and deployment practices. Explore cross-pollination from aviation, banking, cybersecurity, logistics, manufacturing and other high-reliability industries.
 
@@ -1013,7 +1101,7 @@ These are prototype benchmark results and not production NHS performance.
 
 
 
-Week 20 — Technology & Architecture Refresh Gate is NEXT. Review the architecture using KEEP / UPGRADE / REPLACE / IGNORE decisions.
+Week 20 Day 2 — RAG, retrieval and evidence architecture review is NEXT. Examine hybrid retrieval, reranking, long-context alternatives, graph / relationship retrieval, contextual retrieval and evidence architecture. Determine which current retrieval components still earn their place, using KEEP / UPGRADE / REPLACE / IGNORE decisions.
 
 Earlier priority (completed): expand beyond 38 cases. The retrieval benchmark now contains 75 cases; promotion of Hybrid Rescue remains a separate decision.
 
@@ -1125,11 +1213,13 @@ Convert the work into:
 
 # Current Restart Point
 
-Week 19 = COMPLETE. Week 20 = NEXT: Technology & Architecture Refresh Gate.
+Week 19 = COMPLETE. Week 20 Day 1 = COMPLETE. Week 20 Day 2 = NEXT: RAG, retrieval and evidence architecture review.
 
-Final full project regression: **338 passed**. Core principle: **Verify the premise before reasoning from it.**
+Latest verified regression baseline: **338 passed**. Day 1 was documentation-only; tests were not rerun. Architecture v1 remains the tested Week 19 baseline.
 
-The final Week 19 completion record above supersedes the earlier milestone snapshots retained below.
+Current principle: **Simplify the intelligence layer, preserve the assurance layer.** Week 19 principle retained: **Verify the premise before reasoning from it.**
+
+The Week 20 Day 1 record above is the latest status. The Week 19 completion record and earlier milestone snapshots are retained as history.
 
 ## Earlier Restart Snapshot — After Claim-Level Evidence Upgrade
 

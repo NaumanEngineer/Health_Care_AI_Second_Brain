@@ -43,7 +43,8 @@ Folders awaiting their first notes contain a `.gitkeep` placeholder so the struc
 
 - **Week 19 — COMPLETE:** grounded answer governance, citation verification, high-risk claim protection, guarded semantic rescue, and evidence-set relationship / corrective false-premise validation. Final reported full regression: **338 passed**.
 - **Week 20 Day 1 — COMPLETE:** Frontier Models and Agent Architecture Review. “Simplify the intelligence layer, preserve the assurance layer.” Week 19 Architecture v1 remains the tested baseline; 338 tests last passed, with no rerun for the documentation-only Day 1 commit.
-- **Week 20 Day 2 — NEXT:** RAG, retrieval and evidence architecture review within the Technology & Architecture Refresh Gate, using **KEEP / UPGRADE / REPLACE / IGNORE** decisions.
+- **Week 20 Day 2 — COMPLETE:** RAG, Retrieval and Evidence Architecture Review. Keep the hybrid foundation and Hybrid Rescue for now; evaluate reranking, bounded iterative retrieval and relationship-aware expansion. Long context complements RAG; full GraphRAG is not adopted now. Data Formulator is a pilot / design-borrowing candidate, while SQL, PostgreSQL and Power BI remain. Architecture v2 is a proposal; the tested v1 baseline and 338-test result are unchanged.
+- **Week 20 Day 3 — NEXT:** Microsoft Fabric / Azure / data architecture / deployment review: what should remain local/open-source, and what should move toward enterprise-grade Microsoft infrastructure?
 - See [CURRENT_STATUS.md](CURRENT_STATUS.md) for final benchmark results, architecture, limitations and retained milestone history.
 
 ## Week 19 Day 1 — Historical Capture

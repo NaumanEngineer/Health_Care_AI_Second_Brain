@@ -14,9 +14,11 @@
 
 - Week 20 Day 1: COMPLETE
 
-- Next: Week 20 Day 2 — RAG, retrieval and evidence architecture review
+- Week 20 Day 2: COMPLETE
 
-- Current Focus: Day 1 frontier model and agent architecture review complete; Day 2 retrieval and evidence review next
+- Next: Week 20 Day 3 — Microsoft Fabric / Azure / data architecture / deployment review
+
+- Current Focus: Day 2 retrieval and evidence architecture review complete; Day 3 Microsoft infrastructure and deployment review next
 
 - Study Model: Learn → Build → Test → Govern → Document → Reuse
 
@@ -102,10 +104,142 @@ Documents
 
 
 
+## Week 20 Day 2 — COMPLETE: RAG, Retrieval and Evidence Architecture Review
+
+**Status recorded:** 29 September 2026, using the verified review supplied by the project owner.  
+**Progress:** Week 19 = COMPLETE; Week 20 Day 1 = COMPLETE; Week 20 Day 2 = COMPLETE; Week 20 Day 3 = NEXT.
+
+### Tested Architecture v1 baseline
+
+The Day 2 retrieval-stack view is:
+
+```text
+Question
+→ Semantic Retrieval
++ BM25 Keyword Retrieval
+→ Hybrid / RRF
+→ Hybrid Rescue
+→ Active-Document Filtering
+→ Evidence Sufficiency
+→ Answer Generation
+→ Citation / Governance Checks
+```
+
+This is a retrieval-focused conceptual view, not a claim that the existing scope gate or pre-generation governance has been removed or that implementation ordering changed. The full Week 19 governed architecture remains preserved below.
+
+| Controlled synthetic Hybrid Rescue benchmark | Result |
+| --- | ---: |
+| Top-1 accuracy | 82.22% |
+| Top-k accuracy | 82.22% |
+| Abstention accuracy | 100% |
+| Active-document compliance | 100% |
+
+These are controlled synthetic benchmark results, not production NHS performance. The latest verified full regression baseline remains **338 tests passed**; this documentation update does not represent a new test run.
+
+### Day 2 decisions
+
+| Decision | Components |
+| --- | --- |
+| KEEP | Semantic retrieval; BM25 / keyword retrieval; hybrid retrieval / RRF; lifecycle filtering; evidence sufficiency; SQL; PostgreSQL; Power BI |
+| KEEP FOR NOW | Hybrid Rescue |
+| UPGRADE CANDIDATES | Dedicated reranking; lightweight relationship metadata; selective long-context reasoning |
+| STRONG UPGRADE CANDIDATES | Bounded agentic / iterative retrieval; relationship-aware retrieval expansion |
+| DO NOT ADOPT NOW | Full GraphRAG |
+| PILOT / BORROW DESIGN | Microsoft Data Formulator; borrow its Data Threads design pattern |
+
+Hybrid Rescue materially improved the controlled benchmark. Keep it for now, but consider simplifying it later if reranking or iterative retrieval can replace hand-built rescue logic more generally. Upgrade candidates require evaluation; they are not implemented or promoted by this review.
+
+### Long-context principle
+
+> RAG finds the right evidence. Long context reasons across a larger selected evidence set. Governance verifies the resulting answer.
+
+Long context complements RAG. It does not replace lifecycle filtering, provenance, citation verification, evidence sufficiency, human review or abstention.
+
+### Relationship-aware retrieval
+
+Week 19 reasoning supports `CONFLICT`, `COMPLEMENTS`, `REPLACES` and `TAKES_PRECEDENCE`.
+
+Future retrieval enhancement:
+
+```text
+Hybrid retrieval
+→ Retrieve relevant document
+→ Inspect verified document relationships
+→ Expand to connected documents
+→ Lifecycle filtering
+→ Optional reranking
+→ Evidence package
+```
+
+**Full GraphRAG: DO NOT ADOPT NOW.** Its infrastructure and maintenance complexity is too high for the current value. Prefer borrowing the graph/relationship design pattern without introducing a full graph stack.
+
+### Microsoft Data Formulator — PILOT / BORROW DESIGN
+
+Data Formulator is not a replacement for SQL, PostgreSQL or Power BI, and is not a core production dependency yet. Potential value includes rapid exploratory analysis, conversational structured-data investigation, faster chart creation, branching analytical workflows and reduced time-to-insight.
+
+**Data Threads** offers a potential future pattern:
+
+```text
+Main operational question
+→ Workforce branch
+→ Bed-pressure branch
+→ Incident branch
+→ External-pressure branch
+→ Evidence-backed synthesis
+```
+
+The branches represent separate analytical workstreams, not a requirement for a chain of specialist agents.
+
+Pilot questions:
+
+1. Which Trust deteriorated most over the last seven days?
+2. Is staffing pressure associated with higher OPEL levels?
+3. Which dates combine high A&E breach, bed pressure and incident activity?
+
+Evaluate a future pilot using time to first useful insight, correctness, follow-up flexibility, visual quality, repeatability, auditability, governed metric consistency and analyst time saved. These are proposed evaluation criteria, not measured benefits.
+
+### Governed metric rule
+
+The AI exploration layer may help investigate data but must not redefine governed operational metrics such as **bed occupancy, A&E breach, staffing pressure or OPEL level**.
+
+### Architecture v2 retrieval direction — proposed
+
+```text
+Question
+→ Intent / Complexity Assessment
+→ Hybrid Retrieval
+→ Optional Reranking
+→ Optional Agentic Retrieval for Complex Questions
+→ Relationship-Aware Expansion
+→ Lifecycle Filtering
+→ Selected Evidence Package
+→ Long-Context Reasoning Where Justified
+→ Deterministic Assurance
+→ AUTO_ANSWER / REVIEW_REQUIRED / ABSTAIN
+```
+
+This direction preserves the assurance and human-review responsibilities established in Architecture v1. It is a design proposal, not a replacement validated by the existing benchmark.
+
+### Key Day 2 principle
+
+> Do not replace a strong hybrid retrieval foundation. Add smarter behaviour around it.
+
+### Economic interpretation
+
+Future retrieval evaluation should measure retrieval accuracy, analyst minutes saved, policy-search time saved, manual document lookups avoided, cost per governed query, false acceptance rate and human-review rate.
+
+### Week 20 Day 3 — NEXT
+
+**Microsoft Fabric / Azure / data architecture / deployment review.**
+
+Central question: **Which parts of the project should remain local/open-source, and which should move toward enterprise-grade Microsoft infrastructure?**
+
+---
+
 ## Week 20 Day 1 — COMPLETE: Frontier Models and Agent Architecture Review
 
 **Week 20 theme:** Technology & Architecture Refresh Gate.  
-**Progress:** Week 19 = COMPLETE; Week 20 Day 1 = COMPLETE; Week 20 Day 2 = NEXT.  
+**Progress at Day 1 completion:** Week 19 and Week 20 Day 1 were complete; Day 2 was next. See the Day 2 record above for current progress.  
 **Baseline:** The Week 19 governed architecture remains the tested **Architecture v1** baseline. Day 1 records a proposed direction, not an implemented architecture replacement.
 
 ### Latest verified RAG repository state
@@ -180,7 +314,7 @@ These are future measurement targets, not benefits already demonstrated by the p
 
 The assurance layer should remain stable enough that a future frontier model can replace the current intelligence model without rebuilding the whole governance system, provided the replacement passes evaluation.
 
-### Week 20 Day 2 — NEXT
+### Day 2 Plan Recorded at Day 1 Completion
 
 **RAG, retrieval and evidence architecture review.** Examine hybrid retrieval, reranking, long-context alternatives, graph / relationship retrieval, contextual retrieval, evidence architecture and which current retrieval components still earn their place.
 
@@ -190,7 +324,7 @@ The assurance layer should remain stable enough that a future frontier model can
 
 **Project:** Healthcare Document Intelligence / RAG Assistant  
 **Theme:** Grounded answer governance, citation verification, high-risk claim protection, semantic rescue, and evidence-set reasoning.  
-**Progress at Week 19 completion:** Week 19 = COMPLETE; Week 20 was next. See the Week 20 Day 1 record above for current progress.  
+**Progress at Week 19 completion:** Week 19 = COMPLETE; Week 20 was next. See the Week 20 Day 2 record above for current progress.  
 **Status recorded:** 27 September 2026, using the verified final results supplied by the project owner.
 
 ### Claim-level evidence sufficiency
@@ -1101,7 +1235,7 @@ These are prototype benchmark results and not production NHS performance.
 
 
 
-Week 20 Day 2 — RAG, retrieval and evidence architecture review is NEXT. Examine hybrid retrieval, reranking, long-context alternatives, graph / relationship retrieval, contextual retrieval and evidence architecture. Determine which current retrieval components still earn their place, using KEEP / UPGRADE / REPLACE / IGNORE decisions.
+Week 20 Day 3 — Microsoft Fabric / Azure / data architecture / deployment review is NEXT. Central question: which parts of the project should remain local/open-source, and which should move toward enterprise-grade Microsoft infrastructure?
 
 Earlier priority (completed): expand beyond 38 cases. The retrieval benchmark now contains 75 cases; promotion of Hybrid Rescue remains a separate decision.
 
@@ -1213,13 +1347,15 @@ Convert the work into:
 
 # Current Restart Point
 
-Week 19 = COMPLETE. Week 20 Day 1 = COMPLETE. Week 20 Day 2 = NEXT: RAG, retrieval and evidence architecture review.
+Week 19 = COMPLETE. Week 20 Day 1 = COMPLETE. Week 20 Day 2 = COMPLETE. Week 20 Day 3 = NEXT: Microsoft Fabric / Azure / data architecture / deployment review.
 
 Latest verified regression baseline: **338 passed**. Day 1 was documentation-only; tests were not rerun. Architecture v1 remains the tested Week 19 baseline.
 
-Current principle: **Simplify the intelligence layer, preserve the assurance layer.** Week 19 principle retained: **Verify the premise before reasoning from it.**
+Current Day 2 principle: **Do not replace a strong hybrid retrieval foundation. Add smarter behaviour around it.**
 
-The Week 20 Day 1 record above is the latest status. The Week 19 completion record and earlier milestone snapshots are retained as history.
+Day 1 principle retained: **Simplify the intelligence layer, preserve the assurance layer.** Week 19 principle retained: **Verify the premise before reasoning from it.**
+
+The Week 20 Day 2 record above is the latest status. Architecture v2 is a proposed direction, not an implemented replacement. The Day 1 review, Week 19 completion record and earlier milestone snapshots are retained as history.
 
 ## Earlier Restart Snapshot — After Claim-Level Evidence Upgrade
 

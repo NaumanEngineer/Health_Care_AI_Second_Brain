@@ -8,7 +8,7 @@
 
 - Roadmap: 18-Month Health & Care AI Engineer
 
-- Current Week: Week 20 — Technology & Architecture Refresh Gate
+- Current Week: Week 20 — Technology & Architecture Refresh Gate — COMPLETE (Day 6 closeout)
 
 - Week 19: COMPLETE
 
@@ -16,9 +16,9 @@
 
 - Week 20 Day 2: COMPLETE
 
-- Next: Week 20 Day 3 — Microsoft Fabric / Azure / data architecture / deployment review
+- Next: Week 21 — Architecture v2 implementation and comparative evaluation
 
-- Current Focus: Day 2 retrieval and evidence architecture review complete; Day 3 Microsoft infrastructure and deployment review next
+- Current Focus: Week 20 refresh gate complete; prepare the Week 21 build while preserving the tested Architecture v1 baseline
 
 - Study Model: Learn → Build → Test → Govern → Document → Reuse
 
@@ -104,10 +104,74 @@ Documents
 
 
 
+## Week 20 Day 6 — COMPLETE: Technology & Architecture Refresh Gate Closeout
+
+**Progress:** Week 19 = COMPLETE; Week 20 = COMPLETE; Week 21 = NEXT.
+
+This closeout records the project owner's supplied Week 20 decisions. It consolidates the architecture direction; it does not claim that Architecture v2 has been implemented or validated. Earlier Day 1 and Day 2 records remain below as history.
+
+### Baseline and core principle
+
+**Architecture v1 remains the tested evidence-governed RAG assurance baseline.** The latest reported full regression baseline remains **338 tests passed**. This documentation-only closeout does not represent a new test run.
+
+The controlled synthetic Hybrid Rescue benchmark remains **82.22% Top-1, 82.22% Top-k, 100% abstention accuracy and 100% Active-document compliance**. These are prototype benchmark results, not production NHS performance.
+
+> Simple intelligence, strong assurance.
+>
+> Simplify the intelligence layer, preserve the assurance layer.
+
+### Final architecture direction
+
+- Use one strong orchestrator with bounded tools; reduce unnecessary specialist-agent chains and custom orchestration.
+- Keep the hybrid retrieval foundation. Evaluate dedicated reranking, bounded agentic / iterative retrieval, relationship-aware retrieval and selective long-context reasoning. Keep Hybrid Rescue for now pending comparative evidence.
+- Preserve deterministic assurance: evidence sufficiency, lifecycle/version checks, citation verification, high-risk claim protection, evidence-set reasoning and corrective false-premise handling.
+- Retain human accountability, auditability and `AUTO_ANSWER / REVIEW_REQUIRED / ABSTAIN`. A more capable intelligence model must still pass evaluation before replacing the current model.
+- Treat Fabric / OneLake as the future enterprise data path and Microsoft Foundry as a future managed AI runtime candidate. Keep PostgreSQL and Power BI; industrialize selectively rather than migrating by default.
+- Plan deployment around Entra ID, managed identity, RBAC, least privilege, private networking and auditable access. These are target controls, not claims of a completed deployment.
+
+> Prototype locally. Industrialize selectively. Keep ownership of the NHS-specific assurance layer.
+
+### Governance and deployment readiness
+
+The intended purpose remains operational decision support with human accountability, not autonomous high-risk clinical or operational action. Carry forward DCB0129 / DCB0160-minded hazard logging, DPIA / privacy review, data minimisation, development/production separation, version/change control, regulatory readiness, DTAC-style readiness and procurement evidence. Deployment-readiness gaps still need explicit assessment; this review is not a compliance certification.
+
+> Build deployment evidence alongside the product rather than bolting governance on at the end.
+
+### High-reliability lessons to carry forward
+
+| Capability | Design lesson |
+| --- | --- |
+| Operational Control Tower | Detect meaningful exceptions, explain likely drivers, consider dependencies and track trends. |
+| Exception / Severity Triage | Use Detect → Triage → Contain → Recover → Learn, with severity and evidence confidence made visible. |
+| Pre-Decision Safety Checklist | Automate checks, expose readiness and provide an explicit challenge mechanism; preserve human accountability. |
+| AI Model Risk & Change Register | Record usage limits, independent validation, controlled changes and periodic reviews. |
+| Recovery / Lessons-Learned Loop | Track recovery indicators and turn incidents and failed experiments into reusable learning. |
+
+> Automate the checks, not the accountability.
+
+**Emerging USP:** A governed NHS operational control tower that detects meaningful exceptions, explains likely drivers, retrieves relevant policy evidence, verifies the safety of the briefing, and directs management attention to cases that genuinely require human judgement.
+
+**Operating model:** Detect → Prioritise → Explain → Verify → Human Decide → Learn.
+
+### Week 21 — must build and evaluate next
+
+1. Reranker evaluation.
+2. Bounded agentic retrieval.
+3. Relationship-aware retrieval.
+4. A clean orchestrator with bounded tools.
+5. Architecture v2 integration tests.
+6. Architecture v1 vs v2 benchmark.
+
+**Central question:** Does Architecture v2 retrieve better evidence than Architecture v1 without increasing unsafe behaviour?
+
+Keep the Architecture v1 baseline and benchmark evidence intact. Evaluate the proposed improvements before promotion; no Architecture v2 performance claim is established by this closeout.
+
+---
+
 ## Week 20 Day 2 — COMPLETE: RAG, Retrieval and Evidence Architecture Review
 
 **Status recorded:** 29 September 2026, using the verified review supplied by the project owner.  
-**Progress:** Week 19 = COMPLETE; Week 20 Day 1 = COMPLETE; Week 20 Day 2 = COMPLETE; Week 20 Day 3 = NEXT.
+**Progress at Day 2 completion:** Week 19 and Week 20 Days 1–2 were complete; Day 3 was next. See the Week 20 closeout above for current progress.
 
 ### Tested Architecture v1 baseline
 
@@ -228,7 +292,7 @@ This direction preserves the assurance and human-review responsibilities establi
 
 Future retrieval evaluation should measure retrieval accuracy, analyst minutes saved, policy-search time saved, manual document lookups avoided, cost per governed query, false acceptance rate and human-review rate.
 
-### Week 20 Day 3 — NEXT
+### Day 3 Plan Recorded at Day 2 Completion
 
 **Microsoft Fabric / Azure / data architecture / deployment review.**
 
@@ -1235,7 +1299,7 @@ These are prototype benchmark results and not production NHS performance.
 
 
 
-Week 20 Day 3 — Microsoft Fabric / Azure / data architecture / deployment review is NEXT. Central question: which parts of the project should remain local/open-source, and which should move toward enterprise-grade Microsoft infrastructure?
+Week 21 — evaluate reranking, bounded agentic retrieval and relationship-aware retrieval; build a clean orchestrator and Architecture v2 integration tests; compare Architecture v1 vs v2. Central question: does Architecture v2 retrieve better evidence without increasing unsafe behaviour?
 
 Earlier priority (completed): expand beyond 38 cases. The retrieval benchmark now contains 75 cases; promotion of Hybrid Rescue remains a separate decision.
 
@@ -1347,15 +1411,15 @@ Convert the work into:
 
 # Current Restart Point
 
-Week 19 = COMPLETE. Week 20 Day 1 = COMPLETE. Week 20 Day 2 = COMPLETE. Week 20 Day 3 = NEXT: Microsoft Fabric / Azure / data architecture / deployment review.
+Week 19 = COMPLETE. Week 20 = COMPLETE through Day 6 closeout. Week 21 = NEXT: Architecture v2 implementation and comparative evaluation.
 
 Latest verified regression baseline: **338 passed**. Day 1 was documentation-only; tests were not rerun. Architecture v1 remains the tested Week 19 baseline.
 
-Current Day 2 principle: **Do not replace a strong hybrid retrieval foundation. Add smarter behaviour around it.**
+Day 2 principle retained: **Do not replace a strong hybrid retrieval foundation. Add smarter behaviour around it.**
 
 Day 1 principle retained: **Simplify the intelligence layer, preserve the assurance layer.** Week 19 principle retained: **Verify the premise before reasoning from it.**
 
-The Week 20 Day 2 record above is the latest status. Architecture v2 is a proposed direction, not an implemented replacement. The Day 1 review, Week 19 completion record and earlier milestone snapshots are retained as history.
+The Week 20 Day 6 closeout above is the latest status. Architecture v2 remains a proposed direction, not an implemented or validated replacement. The Day 1 and Day 2 reviews, Week 19 completion record and earlier milestone snapshots are retained as history. Current principle: simple intelligence, strong assurance. Operating model: Detect → Prioritise → Explain → Verify → Human Decide → Learn.
 
 ## Earlier Restart Snapshot — After Claim-Level Evidence Upgrade
 

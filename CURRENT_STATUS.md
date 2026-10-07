@@ -1531,3 +1531,118 @@ Every material answer claim should be traceable to the correct supporting eviden
 Next priority:
 
 Evaluate citation verification on realistic generated answers and measure false-positive and false-negative grounding decisions before increasing verifier complexity.
+
+## Week 21 — Architecture v2 Retrieval & Governance
+
+### Status
+Completed.
+
+### Core outcome
+Promoted Architecture v2 to the working retrieval baseline after a controlled v1-v2 benchmark.
+
+### Architecture v2
+Question
+→ Scope Gate
+→ Hybrid Retrieval
+→ Evidence Sufficiency
+→ Deterministic Router
+→ One bounded recovery route
+→ Final Evidence Sufficiency
+→ Retrieval/Governance Bridge
+→ Existing Governance
+→ Generation if permitted
+→ Citation Verification
+→ Final Governance
+
+### Bounded recovery routes
+- RETURN_INITIAL
+- RELATIONSHIP_AWARE
+- BOUNDED_AGENTIC
+- HYBRID_RESCUE
+- STOP_INSUFFICIENT
+
+Only one enhancement route may run per question.
+
+### Major engineering decisions
+- Keep the intelligence layer flexible but the assurance layer deterministic.
+- Do not allow unrestricted agent tool selection.
+- Reuse initial Hybrid retrieval rather than repeating it inside Agentic or Rescue paths.
+- Evidence sufficiency is authoritative before pre-generation governance.
+- Retrieval success does not equal permission to answer.
+- Downstream PASS decisions cannot upgrade an earlier ABSTAIN or REVIEW_REQUIRED.
+
+### Architecture v1 vs v2 benchmark
+Controlled frozen synthetic benchmark:
+- 75 total cases
+- 45 labelled relevance cases
+- 26 expected-abstention cases
+- 28 chunks
+- sentence-transformers/all-MiniLM-L6-v2
+
+Results:
+
+Architecture v1:
+- Top-1: 77.78%
+- Top-k: 77.78%
+- Evidence sufficient: 45
+- Abstention accuracy: 100%
+- Active-only evidence: 100%
+
+Architecture v2:
+- Top-1: 82.22%
+- Top-k: 82.22%
+- Evidence sufficient: 47
+- Abstention accuracy: 100%
+- Active-only evidence: 100%
+
+Comparison:
+- V2 retrieval wins: 2
+- V2 losses: 0
+- Unsafe AUTO_ANSWER on expected abstention: 0
+- Unsafe lifecycle AUTO_ANSWER: 0
+- AUTO_ANSWER count remained 14
+
+### Important recovered cases
+Q027 and Q044.
+
+Both required combined evidence for:
+- severe weather
+- ambulance handover disruption
+
+Architecture v1:
+DOC-008 + DOC-013
+→ insufficient
+→ ABSTAIN
+
+Architecture v2:
+BOUNDED_AGENTIC
+→ DOC-008 + DOC-009
+→ sufficient evidence
+→ REVIEW_REQUIRED
+
+This is the key Week 21 portfolio result:
+Architecture v2 became more useful without becoming less conservative.
+
+### Retrieval cost
+- V1 Hybrid calls: 63
+- V2 Hybrid calls: 68
+- Additional Hybrid calls: 5
+- Hybrid Rescue RRF pool calls: 5
+- Relationship-aware generic benchmark activations: 0
+
+Relationship-Aware Retrieval remains supported by targeted Day 3 evidence rather than aggregate benchmark improvement.
+
+### Testing
+Full Week 21 regression:
+541 passed.
+
+### GitHub
+Commit:
+6aaeb13 Promote Architecture v2 after Week 21 benchmark
+
+### Week 21 decision
+PASS — PROMOTE ARCHITECTURE V2 TO WORKING BASELINE.
+
+### Next direction
+Week 22 should build on Architecture v2 rather than adding disconnected retrieval experiments.
+Priority should be moving toward stronger healthcare document intelligence and enterprise-ready evidence workflows while preserving the deterministic governance layer.

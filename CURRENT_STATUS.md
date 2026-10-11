@@ -8,17 +8,17 @@
 
 - Roadmap: 18-Month Health & Care AI Engineer
 
-- Current Week: Week 20 — Technology & Architecture Refresh Gate — COMPLETE (Day 6 closeout)
+- Current Week: Week 22 — Governed Evidence Workflow — COMPLETE
 
 - Week 19: COMPLETE
 
-- Week 20 Day 1: COMPLETE
+- Week 20: COMPLETE
 
-- Week 20 Day 2: COMPLETE
+- Week 21: COMPLETE — Architecture v2 promoted; Week 22: COMPLETE — Governed evidence workflow validated
 
-- Next: Week 21 — Architecture v2 implementation and comparative evaluation
+- Next: Week 23 — next roadmap stage; preserve the validated Week 22 evidence-assurance baseline
 
-- Current Focus: Week 20 refresh gate complete; prepare the Week 21 build while preserving the tested Architecture v1 baseline
+- Current Focus: Week 22 closeout complete; Architecture v2 now feeds a structured, provenance-verified, lifecycle-aware, precedence-aware and manager-readable evidence workflow
 
 - Study Model: Learn → Build → Test → Govern → Document → Reuse
 

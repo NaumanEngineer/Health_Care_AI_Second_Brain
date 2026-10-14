@@ -104,9 +104,29 @@ Documents
 
 
 
+## Week 22 — COMPLETE: Governed Evidence Workflow
+
+**Current progress:** Weeks 19–22 = COMPLETE; Week 23 = NEXT.
+
+The existing Week 22 status update records a completed, validated governed evidence workflow: Architecture v2 feeds structured, provenance-verified, lifecycle-aware, precedence-aware and manager-readable evidence. This summary consolidates that recorded status without adding implementation or validation claims.
+
+**Working baseline:** Architecture v2 was promoted in Week 21 after the controlled synthetic v1-v2 comparison. Its recorded results were 82.22% Top-1, 82.22% Top-k, 100% abstention accuracy and 100% Active-only evidence, with zero unsafe AUTO_ANSWER outcomes on the reported abstention and lifecycle checks. These are prototype results, not production NHS performance.
+
+**Latest detailed regression record in this Second Brain:** Week 21 — **541 passed**. The Week 22 header reports workflow validation but contains no Week 22 test count, detailed experiment results or source-artifact references. Do not treat 541 as a newly verified Week 22 result. No tests were rerun for this documentation correction.
+
+**Continuity checkpoint:** Capture the Week 22 implementation evidence, validation results, technical/governance lessons and reusable interview evidence when those source records are available. Dedicated learning, NHS, governance and interview-evidence folders remain placeholders; relevant material currently lives in the status and project/review notes. This is an organizational gap, not evidence that the work was not done.
+
+**Next:** Week 23 — the next roadmap stage, preserving the recorded Week 22 evidence-assurance baseline. A detailed Week 23 implementation plan is not yet recorded here.
+
+See the retained **Week 21 — Architecture v2 Retrieval & Governance** section below for the benchmark, bounded recovery routes, governance decisions and promotion evidence.
+
+## Historical Milestones — Weeks 19–20
+
+The sections below retain decisions and results as recorded at each milestone. References to Architecture v1 as current, Architecture v2 as proposed, or 338 tests as latest apply to those historical milestones, not the current Week 22 status.
+
 ## Week 20 Day 6 — COMPLETE: Technology & Architecture Refresh Gate Closeout
 
-**Progress:** Week 19 = COMPLETE; Week 20 = COMPLETE; Week 21 = NEXT.
+**Progress at Week 20 completion:** Week 19 and Week 20 were complete; Week 21 was next. See the Week 22 summary above for current progress.
 
 This closeout records the project owner's supplied Week 20 decisions. It consolidates the architecture direction; it does not claim that Architecture v2 has been implemented or validated. Earlier Day 1 and Day 2 records remain below as history.
 
@@ -1299,7 +1319,7 @@ These are prototype benchmark results and not production NHS performance.
 
 
 
-Week 21 — evaluate reranking, bounded agentic retrieval and relationship-aware retrieval; build a clean orchestrator and Architecture v2 integration tests; compare Architecture v1 vs v2. Central question: does Architecture v2 retrieve better evidence without increasing unsafe behaviour?
+Week 23 is next. Preserve the recorded Week 22 governed evidence workflow and Architecture v2 working baseline. The detailed Week 23 plan is not yet recorded; first bring the Week 22 source evidence and validation references into the review checkpoint.
 
 Earlier priority (completed): expand beyond 38 cases. The retrieval benchmark now contains 75 cases; promotion of Hybrid Rescue remains a separate decision.
 
@@ -1411,15 +1431,15 @@ Convert the work into:
 
 # Current Restart Point
 
-Week 19 = COMPLETE. Week 20 = COMPLETE through Day 6 closeout. Week 21 = NEXT: Architecture v2 implementation and comparative evaluation.
+Weeks 19–22 = COMPLETE. Week 23 = NEXT. Architecture v2 is the working retrieval baseline feeding the recorded Week 22 governed evidence workflow.
 
-Latest verified regression baseline: **338 passed**. Day 1 was documentation-only; tests were not rerun. Architecture v1 remains the tested Week 19 baseline.
+Latest detailed regression result recorded here: **541 passed in Week 21**. A Week 22 regression count is not recorded. Architecture v1 remains the historical comparison baseline; Architecture v2 was promoted in Week 21. No tests were rerun for this documentation correction.
 
 Day 2 principle retained: **Do not replace a strong hybrid retrieval foundation. Add smarter behaviour around it.**
 
 Day 1 principle retained: **Simplify the intelligence layer, preserve the assurance layer.** Week 19 principle retained: **Verify the premise before reasoning from it.**
 
-The Week 20 Day 6 closeout above is the latest status. Architecture v2 remains a proposed direction, not an implemented or validated replacement. The Day 1 and Day 2 reviews, Week 19 completion record and earlier milestone snapshots are retained as history. Current principle: simple intelligence, strong assurance. Operating model: Detect → Prioritise → Explain → Verify → Human Decide → Learn.
+The Week 22 summary above is the latest status. The detailed Week 21 Architecture v2 record below supplies the promotion evidence. Week 19 and Week 20 records remain historical snapshots. Current principle: simple intelligence, strong assurance. Operating model: Detect → Prioritise → Explain → Verify → Human Decide → Learn.
 
 ## Earlier Restart Snapshot — After Claim-Level Evidence Upgrade
 
@@ -1643,6 +1663,6 @@ Commit:
 ### Week 21 decision
 PASS — PROMOTE ARCHITECTURE V2 TO WORKING BASELINE.
 
-### Next direction
+### Next direction recorded at Week 21 completion
 Week 22 should build on Architecture v2 rather than adding disconnected retrieval experiments.
 Priority should be moving toward stronger healthcare document intelligence and enterprise-ready evidence workflows while preserving the deterministic governance layer.
